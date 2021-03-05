@@ -2,8 +2,10 @@
 title: "Simulation-based inference - confidence intervals"
 author: "Brendan Kelleher"
 date: "March 3, 2021"
-output: html_document
-editor_options: 
+output:
+  pdf_document: default
+  html_document: default
+editor_options:
   chunk_output_type: console
 ---
 
