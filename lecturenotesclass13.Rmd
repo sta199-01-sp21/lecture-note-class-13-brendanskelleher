@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
 - Generating bootstrap confidence intervals
 
 - Correctly interpret confidence intervals
-  
+
 # Packages
 
 ```{r packages}
@@ -189,7 +189,7 @@ Consider 20 1-bedroom apartments that were randomly selected on
 Craigslist Manhattan from apartments listed as "by owner".
 
 ```{r data_manhattan}
-manhattan <- read_csv("~/manhattan.csv")
+manhattan <- read_csv("manhattan.csv")
 ```
 
 Consider 3-10 day survival of mice randomized to various
@@ -329,6 +329,8 @@ get_ci(boot_means, level = 0.95)
 ```
 
 What does this mean?
+My Answer: At 95% confidence, the average rent in Manhattan ranges from $2,299
+to $2,977.
 
 **Interpretation**:
 
@@ -339,12 +341,19 @@ population *median* price of 1-bedroom apartments in Manhattan. Do this in a
 single code chunk with a single pipeline. Provide an interpretation of your result.
 
 ```{r practice_1}
-
+manhattan %>%
+  specify(response = rent) %>%
+  generate(reps = 10000, type = "bootstrap") %>%
+  calculate(stat = "median") %>%
+  get_ci(level = 0.95)
 ```
+
+Answer: At 95% confidence, the median rent in Manhattan ranges from $2,162 to
+$2,875.
 
 ### A confidence interval for the population proportion - $p$
 
-Consider the mice radiation dataset. Suppose we want to compute a 95% confidence interval for the proportion of mice that died while not on the treatment,regardless of the dose.
+Consider the mice radiation dataset. Suppose we want to compute a 95% confidence interval for the proportion of mice that died while not on the treatment, regardless of the dose.
 
 First, identify the following:
 
